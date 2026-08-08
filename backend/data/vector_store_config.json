@@ -1,0 +1,13 @@
+{
+  "embedding_model": "all-MiniLM-L6-v2",
+  "collection_name": "rag_docs",
+  "chunk_size": 500,
+  "overlap": 50,
+  "total_chunks": 32,
+  "documents": [
+    "fastapi_guide.txt",
+    "python_advanced.txt",
+    "python_basics.txt",
+    "software_engineering.txt"
+  ]
+}
