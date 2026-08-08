@@ -1,0 +1,22 @@
+Python Advanced Concepts FAQ
+
+Q: What is a generator in Python?
+A generator is a function that returns an iterator using the yield keyword. Unlike regular functions that return all values at once, generators produce values one at a time, making them memory-efficient for large datasets. Example: def count_up(n): for i in range(n): yield i. Use next() to get the next value or iterate with a for loop.
+
+Q: What is the Global Interpreter Lock (GIL)?
+The GIL is a mutex in CPython that allows only one thread to execute Python bytecode at a time, even on multi-core systems. This means Python threads are good for I/O-bound tasks but not CPU-bound parallel computation. For CPU-bound parallelism, use multiprocessing module which creates separate processes with separate GILs.
+
+Q: What are context managers and the with statement?
+Context managers handle setup and teardown logic automatically. The with statement ensures __enter__ runs on entry and __exit__ runs on exit (even if an exception occurs). Used for file handling: with open('file.txt') as f:, database connections, locks, and any resource needing cleanup. Create custom ones with contextlib.contextmanager.
+
+Q: What is the difference between __str__ and __repr__?
+__repr__ should return an unambiguous string representation useful for debugging, ideally one that could recreate the object. __str__ returns a human-readable string for end users. If only __repr__ is defined, it is used when __str__ is called. Best practice: always define __repr__; only define __str__ if you need a different user-facing format.
+
+Q: How do async/await work in Python?
+Async/await enables asynchronous programming using coroutines. Define async def my_func(): to create a coroutine. Use await to pause execution and wait for an async operation without blocking the event loop. asyncio.run() runs the top-level coroutine. Use for I/O-bound tasks: web requests, database queries, file I/O. Libraries: httpx, aiofiles, asyncpg.
+
+Q: What is the difference between deepcopy and shallow copy?
+Shallow copy (copy.copy() or list[:]) creates a new object but references the same nested objects. Modifying a nested object affects both copies. Deep copy (copy.deepcopy()) creates a completely independent clone including all nested objects. Use deep copy when you need total isolation between the original and the copy.
+
+Q: What are Python dataclasses?
+Dataclasses (Python 3.7+) automatically generate __init__, __repr__, and __eq__ methods based on class variable annotations. Use @dataclass decorator. Example: @dataclass class Point: x: float; y: float. Use field() for defaults. Use @dataclass(frozen=True) for immutable instances. They reduce boilerplate for data-holding classes.
